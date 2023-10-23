@@ -4,6 +4,7 @@ from flask_graphql import GraphQLView
 
 #GraphQLView is part of the Flask-GraphQL library and 
 # is used to add a GraphQL route to your Flask application
+
 import graphene #  Graphene is a Python library that is used to define and work with 
 #GraphQL schemas, types, and resolvers. 
 # It provides the necessary building blocks for creating a 
@@ -51,8 +52,11 @@ def add_stock():
 def get_stocks():
   return jsonify({'stocks':stocks})
   
+#adding a graphQL Route
+app.add_url_rule('/graphql',view_func=GraphQLView.as_view('graphql',schema=schema, graphql=True))
 
-if __name__ == '__main__': # make sure to have a space before and after the  ==
+
+if __name__ == '__main__': 
  app.run(debug=True)
 
 # The condition checks if the script is being run as the main program,
