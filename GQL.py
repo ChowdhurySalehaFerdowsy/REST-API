@@ -13,6 +13,8 @@ app = Flask(__name__)
 
 # In Python, double underscores, such as __name__, have special meanings.
 # In this case, __name__ is a built-in variable that represents the name of the current module.
+# Create a list to store the stocks
+stocks = []
 
 #define a GraphQL Schema usng graphene
 class Stock(graphene.ObjectType):
@@ -22,16 +24,12 @@ class Stock(graphene.ObjectType):
 
 class Query(graphene.ObjectType):
   stocks = graphene.List(Stock)
-
 def resolve_stocks(self, info):
   return stocks
 
 schema=graphene.Schema(query=Query)
 
 
-#created a list to store the stocks
-
-stocks = []
 
 #Create a route to add new stocks
 #Define a new route for adding stock data. For example, 
