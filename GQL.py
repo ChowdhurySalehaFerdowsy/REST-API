@@ -1,10 +1,33 @@
 from flask import Flask, jsonify, request
 
+from flask_graphql import GraphQLView 
+
+#GraphQLView is part of the Flask-GraphQL library and 
+# is used to add a GraphQL route to your Flask application
+import graphene #  Graphene is a Python library that is used to define and work with 
+#GraphQL schemas, types, and resolvers. 
+# It provides the necessary building blocks for creating a 
+# GraphQL API in Python
 
 app = Flask(__name__)
 
 # In Python, double underscores, such as __name__, have special meanings.
 # In this case, __name__ is a built-in variable that represents the name of the current module.
+
+#define a GraphQL Schema usng graphene
+class Stock(graphene.ObjectType):
+  name=graphene.String()
+  ticker_symbol= graphene.String()
+  current_price= graphene.Float()
+
+class Query(graphene.ObjectType):
+  stocks = graphene.List(Stock)
+
+def resolve_stocks(self, info):
+  return stocks
+
+schema=graphene.Schema(query=Query)
+
 
 #created a list to store the stocks
 
