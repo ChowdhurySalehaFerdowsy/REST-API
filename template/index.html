@@ -1,0 +1,19 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Updates</title>
+    <script>
+        var socket = new WebSocket("ws://localhost:8765");
+        socket.onmessage = function (event) {
+            document.getElementById("price").textContent = event.data;
+        };
+    </script>
+</head>
+<body>
+    <h1>Stock Price Updates</h1>
+    <p>Price: $<span id="price">0.00</span></p>
+</body>
+</html>
